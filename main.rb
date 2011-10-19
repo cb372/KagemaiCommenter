@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
-require 'SvnLogParser'
-require 'CommentPoster'
 
-require 'config.rb'
+require File.expand_path(File.dirname(__FILE__) + '/SvnLogParser')
+require File.expand_path(File.dirname(__FILE__) + '/CommentPoster')
+
+require File.expand_path(File.dirname(__FILE__) + '/config.rb')
 
 def usage()
   puts "Usage:"
