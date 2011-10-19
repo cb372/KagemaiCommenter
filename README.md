@@ -5,6 +5,7 @@ A script for adding comments to a [Kagemai](http://www.daifukuya.com/kagemai/) b
 Designed to be used as an SVN post-commit hook.
 
 The Kagemai comment can include:
+
 * the SVN revision of the commit
 * the SVN branch(es) changed by the commit
 * the username/email address of the committer
