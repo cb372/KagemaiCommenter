@@ -14,7 +14,7 @@ class KagemaiCommenter
     @project_name = project_name
 
     # Options
-    @email_template = options[:email_template] || ":::user:::@infoscience.co.jp"
+    @email_template = options[:email_template] || ":::user:::@mycompany.com"
     @comment_template = options[:comment_template] || "Committed: r:::revision:::"
   end
 
