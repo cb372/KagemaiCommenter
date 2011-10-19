@@ -16,12 +16,14 @@ class CommentPoster
     # Options
     @email_template = options[:email_template] || ":::user:::@mycompany.com"
     @comment_template = options[:comment_template] || "Committed: r:::revision:::"
+    @branch_name_separator = options[:branch_name_separator] || ", "
   end
 
   def post_comment(
 	bug_id, 
 	commit_revision,
-	commit_user)
+	commit_user,
+	commit_branches)
     url = "#{@kagemai_url}guest.fcgi?action=view_report&s=1&project=#{@project_name}&id=#{bug_id}" 
     
     # GET the Kagemai page 
@@ -39,7 +41,8 @@ class CommentPoster
     comment = substitute(@comment_template, 
 			{ 'revision' => commit_revision,
 			  'user' => commit_user,
-			  'email' => email_address })
+			  'email' => email_address,
+			  'branches' => commit_branches.join(@branch_name_separator) })
 
     # Post the comment to Kagemai
     resp = Net::HTTP.post_form(URI.parse(url),

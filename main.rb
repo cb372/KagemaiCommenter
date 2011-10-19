@@ -36,7 +36,10 @@ if __FILE__ == $0
   # Retrieve the username of the SVN committer
   username = parser.get_committer_name(revision)
 
+  # Retrieve the changed SVN branches
+  branches = parser.get_changed_branches(revision)
+
   # For each bug, add a comment to Kagemai
-  bug_ids.each{|i| commenter.post_comment(i, revision, username)}
+  bug_ids.each{|i| commenter.post_comment(i, revision, username, branches)}
 end
 

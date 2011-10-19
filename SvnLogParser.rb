@@ -7,6 +7,7 @@ class SvnLogParser
     @repo_path = repo_path
     @svnlook_cmd = options[:svnlook_cmd] || "svnlook"
     @bugid_line_start = options[:bugid_line_start] || "BTS-ID:"
+    @branch_name_pattern = Regexp.new(options[:branch_name_pattern] || "(trunk)|/branches/([^/]+/)")
   end
 
   def get_bug_ids(revision)
@@ -19,6 +20,15 @@ class SvnLogParser
 
   def get_committer_name(revision)
     `#{@svnlook_cmd} author -r "#{revision}" "#{@repo_path}"`.strip
+  end
+
+  def get_changed_branches(revision)
+    dirs_changed = `#{@svnlook_cmd} dirs-changed -r "#{revision}" "#{@repo_path}"`
+    dirs_changed.
+        map{|x| x.scan(@branch_name_pattern)}.
+        flatten.
+        select{|x| !x.nil?}.
+        uniq
   end
   
   def extract_bug_ids(commitlog)

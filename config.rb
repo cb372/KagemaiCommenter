@@ -7,6 +7,7 @@
 @svn_options = { 	
 	:svnlook_cmd => '/path/to/svnlook', # Full path to the svnlook command
     	:bugid_line_start => 'BUGS:'  # Marker for lines in the commit log containing bug IDs
+	:branch_name_pattern => '(trunk)' # Regex for finding the SVN branch name in a path
 } 
 =end
 
@@ -23,8 +24,10 @@
 'Custom multi-line comment including...
 
 SVN revision: :::revision::: 
+SVN branch(es): :::branches:::
 SVN committer username: :::user:::
 SVN committer email address: :::email:::
-Link to WebSVN: http://dev.mycompany.com/wsvn/myproject/?op=revision&isdir=1&rev=:::revision:::&peg=:::revision:::' 
+Link to WebSVN: http://dev.mycompany.com/wsvn/myproject/?op=revision&isdir=1&rev=:::revision:::&peg=:::revision:::',
+	:branch_name_separator => ' and ' 
 } 
 =end
