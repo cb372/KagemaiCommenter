@@ -4,15 +4,21 @@ A script for adding comments to a [Kagemai](http://www.daifukuya.com/kagemai/) b
 
 Designed to be used as an SVN post-commit hook.
 
-See code comments for examples of customization options.
+The Kagemai comment can include the SVN revision and username/email address of the committer.
+
+See code comments in `config.rb` for examples of customization options.
 
 
 ## Usage
 
+Edit options in `config.rb` to match your environment.
+
 Add a line similar to the following to your `post-commit` file.
 
-    /path/to/ruby kagemai_comment.rb "$REV" "$REPOS"
+    /path/to/ruby /path/to/KagemaiCommenter/main.rb "$REV" "$REPOS"
 
 ## Dependencies
 
 None.
+
+Tested in Ruby 1.8.7.
