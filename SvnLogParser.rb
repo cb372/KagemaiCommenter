@@ -7,7 +7,7 @@ class SvnLogParser
     @repo_path = repo_path
     @svnlook_cmd = options[:svnlook_cmd] || "svnlook"
     @bugid_line_start = options[:bugid_line_start] || "BTS-ID:"
-    @branch_name_pattern = Regexp.new(options[:branch_name_pattern] || "(trunk)|/branches/([^/]+/)")
+    @branch_name_pattern = Regexp.new(options[:branch_name_pattern] || "(trunk)|/branches/([^/]+)/")
   end
 
   def get_bug_ids(revision)
